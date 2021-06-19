@@ -1,6 +1,6 @@
-# FULL-MERN-AUTH-Boilerplate
+# FULL-MERN-BLOG-APP
 
-MERN Authentication, Login, Register, verification email, Facebook, Google, Forget Password
+MERN BLOG APP, Login, Register, verification email, Facebook, Google, Forget Password
 
 ## Technologies Used:
 
@@ -23,6 +23,6 @@ MERN Authentication, Login, Register, verification email, Facebook, Google, Forg
 -   Login with Google & Facebook is also added.
 -   Forgot & Reset Password functionality using mail varification is also added.
 -   Private routing is acheived.
--   User can't access Private Routes without login.
+-   User can't create blogs without login.
 -   Error Handling.
 -   Professioanl Code Structure
