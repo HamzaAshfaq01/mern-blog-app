@@ -6,8 +6,7 @@ MERN BLOG APP, Login, Register, verification email, Facebook, Google, Forget Pas
 
 -   HTML.
 -   CSS.
--   Bootstrap.
--   React Bootstrap.
+-   Tailwind css
 -   JavaScript.
 -   ReactJS.
 -   Redux.
