@@ -1,40 +1,43 @@
 import React from 'react';
 import { Route, Redirect, Switch } from 'react-router-dom';
-import Login from '../screens/Login.jsx';
-import Register from '../screens/Register.jsx';
-import Activate from '../screens/Activate.jsx';
-import Private from '../screens/Private.jsx';
-import Admin from '../screens/Admin.jsx';
-import ForgetPassword from '../screens/ForgetPassword.jsx';
-import ResetPassword from '../screens/ResetPassword.jsx';
 
-import PrivateRoute from './private/PrivateRoute';
+import Home from "../screens/home/Home"
+import Login from '../screens/auth/Login';
+import Signup from '../screens/auth/Signup';
+// import Activate from '../screens/Activate.jsx';
+import BlogDetail from '../components/BlogDetail';
+import ForgotPassword from '../screens/auth/ForgotPassword.jsx';
+import ResetPassword from '../screens/auth/ResetPassword.jsx';
+// import PrivateRoute from './private/PrivateRoute';
 
 function Routes() {
 	return (
 		<Switch>
-			<Route path='/login' exact render={(props) => <Login {...props} />} />
+			<Route path='/' exact render={(props) => <Home {...props} />} />
+			<Route path='/signin' exact render={(props) => <Login {...props} />} />
 			<Route
-				path='/register'
+				path='/signup'
 				exact
-				render={(props) => <Register {...props} />}
+				render={(props) => <Signup {...props} />}
 			/>
 			<Route
-				path='/users/password/forget'
+				path='/password/forgot'
 				exact
-				render={(props) => <ForgetPassword {...props} />}
+				render={(props) => <ForgotPassword {...props} />}
 			/>
 			<Route
-				path='/users/password/reset/:token'
+				path='/password/reset/:token'
 				exact
 				render={(props) => <ResetPassword {...props} />}
 			/>
-			<Route
+			<Route 	path='/blog/detail'
+				exact render={(props)=><BlogDetail {...props}/>}/>
+			{/* <Route
 				path='/users/activate/:token'
 				exact
 				render={(props) => <Activate {...props} />}
-			/>
-			<PrivateRoute path='/private' exact component={Private} />
+			/> */}
+			{/* <PrivateRoute path='/private' exact component={Private} /> */}
 			<Redirect to='/' />
 		</Switch>
 	);

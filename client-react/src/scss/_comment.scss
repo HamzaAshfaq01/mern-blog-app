@@ -1,0 +1,27 @@
+.comment-wrap {
+    background: var(--c-gray-lighter);
+    border-radius: var(--size-2);
+    padding: 2.5rem 1rem;
+    margin-top: 6rem;
+}
+.comment-container {
+    max-width: 700px;
+    margin: 0 auto;
+}
+.comment-placeholder {
+    &.is-hidden {
+        display: none;
+    }
+}
+@media screen and (max-width:575px) {
+    .about-author {
+        text-align: center;
+        .avatar-wrap {
+            margin: 0 auto;
+        }
+        .author-info {
+            margin-top: 16px;
+            flex-basis: 100%;
+        }
+    }
+}

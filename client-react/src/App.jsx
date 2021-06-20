@@ -7,11 +7,11 @@ import Footer from './components/Footer';
 import Routes from './Routes/index';
 function App({ history }) {
 	return (
-		<>
+		<div className='site-wrap' style={{ minHeight: '100vh' }}>
 			<Header />
 			<Routes />
 			<Footer />
-		</>
+		</div>
 	);
 }
 

@@ -1,39 +1,73 @@
 import React from 'react'
-import {Link} from "react-router-dom"
-import Logo from "../assests/logo.svg"
-
-function Footer() {
+import Pic from "../../../assests/hamza.jpg"
+function HeroSection() {
     return (
-     <footer class="site-footer">
-				<div class="container">
-					<div class="footer-top">
-						<div class="row">
-							<div class="col-lg-5">
-								<div class="footer-widget widget-about">
-									<div class="widget-content">
-										<div class="footer-logo-wrap">
-											<Link to='/' class='flex align-items logo-img theme-light-logo'>
-						<img style={{ marginRight: '5px' }} src={Logo} alt='Logo' />{' '}
-						<h1 style={{ margin: '0' }}>Blogs.</h1>
-					</Link>
-											<a
-												href="https://arun.gbjsolution.com"
-												class="logo-img theme-dark-logo"
-											>
-												<img
-													src="/assets/images/dark-theme-logo.svg?v=72c5aa3fae"
-													alt="Arun Roy"
-												/>
-											</a>
-										</div>
-										<div class="site-description">
-										     A professional freelancer , a Full-stack web developer and CS student.
-										</div>
-									</div>
-								</div>
-							</div>
-                            <div class="footer-bottom flex justify-space-between">
-					<div class="social-links-wrap flex" style={{marginRight:"10px"}}>
+        <section class="home-cover-area">
+        <div class="container">
+            <div class="row home-cover-wrap has-cover-image">
+                <div class="col-lg-5">
+                    <div class="cover-img-container">
+                        <div class="cover-img-wrap">
+                            <img
+                                loading="lazy"
+                                src={Pic}
+                                alt="Arun Roy cover image"
+                            />
+
+                            <div class="dot-parent dot-1">
+                                <div class="dot"></div>
+                            </div>
+                            <div class="dot-parent dot-2">
+                                <div class="dot"></div>
+                            </div>
+                            <div class="dot-parent dot-3">
+                                <div class="dot"></div>
+                            </div>
+                            <div class="dot-parent dot-4">
+                                <div class="dot"></div>
+                            </div>
+                            <div class="dot-parent dot-5">
+                                <div class="dot"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="home-cover-content-wrap">
+                        <h1 class="heading-large">Hay, I am Hamza</h1>
+                        <div class="intro-description">
+                    A professional freelancer and a Full-stack web developer. I develop apps and sites with responsive UI with a fast and scalable backend. I like React & Node.js.
+                        </div>
+                        <form
+                            class="
+                                members-form
+                                cover-subscribe-form
+                                text-left
+                            "
+                            data-members-form="subscribe"
+                        >
+                            <div class="form-field-wrap field-group-inline">
+                                <label
+                                    for="header-form-email"
+                                    class="sr-only"
+                                    >Email</label
+                                >
+                                <input
+                                    data-members-email=""
+                                    type="email"
+                                    class="email form-field input-field"
+                                    id="header-form-email"
+                                    placeholder="Your email address"
+                                    required=""
+                                    autocomplete="off"
+                                />
+                                <button class="btn form-field" type="submit">
+                                    <span>Subscribe</span>
+                                </button>
+                            </div>
+
+                        </form>
+                        <div class="social-links-wrap flex">
                             <span class="title">Follow:</span>
                             <div class="social-links flex">
                                 <a
@@ -89,18 +123,12 @@ function Footer() {
                                 ></a>
                             </div>
                         </div>
-						<div class="copyright">
-							&copy; 2021
-							<a target="_blank" href="https://pro-developer90.herokuapp.com/">Hamza Ashfaq</a> - All
-							right Reserved.
-						</div>
-					</div>
-						</div>
-					</div>
-					
-				</div>
-			</footer>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     )
 }
 
-export default Footer
+export default HeroSection

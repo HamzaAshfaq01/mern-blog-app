@@ -1,0 +1,12 @@
+// center aligned page style 
+.centered-page-header {
+    max-width: 840px;
+    margin: 0 auto 4rem auto;
+    .title {
+        margin-top: 0;
+    }
+    .description {
+        font-size: 1.125rem;
+        line-height: 1.65;
+    }
+}

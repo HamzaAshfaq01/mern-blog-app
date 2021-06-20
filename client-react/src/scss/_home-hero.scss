@@ -1,0 +1,195 @@
+.home-cover-area {
+    margin-top: 12rem;
+    margin-bottom: 12rem;
+    .social-links-wrap {
+        margin-top: 2rem;
+    }
+}
+.home-cover-wrap {
+    align-items: center;
+    &.has-cover-image {
+        flex-direction: row-reverse;
+    }
+}
+.home-cover-content-wrap {
+    animation: slideUp 0.7s ease-out;
+}
+.intro-description {
+    padding:0 35px 0 0;
+    font-size: 1.5rem;
+}
+.cover-subscribe-form {
+    margin-top: 40px;
+    max-width: 460px;
+}
+.cover-img-container {
+    max-width: 400px;
+    margin-left: auto;
+    animation: scaleUp 1s ease-out;
+}
+.cover-img-wrap {
+    padding-bottom: 100%;
+    position: relative;
+    border-radius: 50%;
+    margin: 0 auto;
+    &::before {
+        content: "";
+        width: 128%;
+        height: 128%;
+        top: -14%;
+        left: -14%;
+        z-index: -2;
+        position: absolute;
+        border: 2px dashed var(--c-border-light);
+        border-radius: 50%;
+    }
+    &::after {
+        content: "";
+        width: 168%;
+        height: 168%;
+        top: -34%;
+        left: -34%;
+        z-index: -2;
+        position: absolute;
+        border: 2px dashed var(--c-border-light);
+        border-radius: 50%;
+    }
+    img {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+}
+.dot-parent {
+    position: absolute;
+    border-radius: 50%;
+    z-index: -1;
+    .dot {
+        border-radius: 50%;
+        filter: blur(2px);
+    }
+}
+.dot-1 {
+    top: -14%;
+    left: -14%;
+    width: 128%;
+    height: 128%;
+    animation: spin var(--dot-anim-duration) linear infinite;
+    animation-delay: calc(var(--dot-anim-duration) / -8);
+    .dot {
+        position: relative;
+        top: -2.5%;
+        left: calc(50% - 2.5%);
+        background: var(--c-dot-1);
+        width: 5%;
+        height: 5%;
+    }
+}
+.dot-2 {
+    top: -14%;
+    left: -14%;
+    width: 128%;
+    height: 128%;
+    animation: spin var(--dot-anim-duration) linear infinite;
+    animation-delay: calc(var(--dot-anim-duration) / -1.81);
+    .dot {
+        position: relative;
+        top: -3%;
+        left: calc(50% - 3%);
+        background: var(--c-dot-2);
+        width: 6%;
+        height: 6%;
+    }
+}
+.dot-3 {
+    top: -34%;
+    left: -34%;
+    width: 168%;
+    height: 168%;
+    animation: spin var(--dot-anim-duration) linear infinite;
+    animation-delay: calc(var(--dot-anim-duration) / -3.33);
+    .dot {
+        position: relative;
+        top: -2.5%;
+        left: calc(50% - 2.5%);
+        background: var(--c-dot-3);
+        width: 5%;
+        height: 5%;
+    }
+}
+.dot-4 {
+    top: -34%;
+    left: -34%;
+    width: 168%;
+    height: 168%;
+    animation: spin var(--dot-anim-duration) linear infinite;
+    animation-delay: calc(var(--dot-anim-duration) / -1.08);
+    .dot {
+        position: relative;
+        top: -2.5%;
+        left: calc(50% - 2.5%);
+        background: var(--c-dot-4);
+        width: 5%;
+        height: 5%;
+    }
+}
+.dot-5 {
+    top: -34%;
+    left: -34%;
+    width: 168%;
+    height: 168%;
+    animation: spin var(--dot-anim-duration) linear infinite;
+    animation-delay: calc(var(--dot-anim-duration) / -1.48);
+    .dot {
+        position: relative;
+        top: -3%;
+        left: calc(50% - 3%);
+        background: var(--c-dot-5);
+        width: 6%;
+        height: 6%;
+    }
+}
+
+@media screen and(max-width: 991px) {
+    .home-cover-area {
+        margin-top: 10rem;
+        margin-bottom: 4rem;
+    }
+    .cover-img-container {
+        margin: 0 auto 2rem;
+        max-width: 300px;
+    }
+    .heading-large, .intro-description {
+        text-align: center;
+    }
+    .cover-subscribe-form {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .home-cover-area {
+        .social-links-wrap {
+            justify-content: center;
+        }
+    }
+}
+@media screen and(max-width: 575px) {
+    .home-cover-area {
+    margin-top: 5rem;
+        margin-bottom: 4rem;
+    }
+    .cover-img-container {
+        max-width: 180px;
+    }
+}
+@media screen and(max-width: 767px) {
+    .intro-description {
+        font-size: 1.25rem;
+    }
+}
+@media screen and(min-width: 768px) {
+    .cover-subscribe-form {
+        max-width: 460px;
+    }
+}

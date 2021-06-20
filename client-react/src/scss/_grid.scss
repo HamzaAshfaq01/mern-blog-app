@@ -1,0 +1,119 @@
+html {
+    box-sizing: border-box;
+}
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+/*=====================================================
+	The following code has been written using
+	reference and concept from
+	https://github.com/trufa/example-css-grid
+	here we generate simple and common grid
+	system classes similar to bootstrap. Now
+	we don't use bootstrap css large file.
+	Common .col, .row and .container classes
+	are available just for the grid system
+	in our template
+=====================================================*/
+$breakpoint-sm: 576;
+$breakpoint-md: 768;
+$breakpoint-lg: 992;
+$breakpoint-xl: 1200;
+$columns: 12;
+$gutter: 32;
+
+$map-grid-props: (
+	'': 0,
+	'-sm': $breakpoint-sm,
+	'-md': $breakpoint-md,
+	'-lg': $breakpoint-lg,
+	'-xl': $breakpoint-xl
+);
+/*=====================================================
+	Media query mixin
+=====================================================*/
+@mixin create-mq($breakpoint, $min-or-max) {
+	@if($breakpoint == 0) {
+		@content;
+	} @else {
+		@media screen and (#{$min-or-max}-width: $breakpoint *1px) {
+		@content;
+		}
+	}
+}
+/*=====================================================
+	mixin col class
+=====================================================*/
+@mixin create-col-classes($modifier, $columns, $breakpoint) {
+	@include create-mq($breakpoint, 'min') {
+		@for $i from 1 through $columns {
+			.col#{$modifier}-#{$i} {
+				flex: 0 0 $i / $columns  * 100%;
+				max-width: $i / $columns  * 100%;
+			}
+		}
+	}
+}
+
+@mixin make-col-offset($modifier, $columns, $breakpoint) {
+	@include create-mq($breakpoint, 'min') {
+		@for $i from 0 through ($columns - 1) {
+			@if not ($modifier == "" and $i == 0) { // Avoid emitting useless .offset-0
+				.offset#{$modifier}-#{$i} {
+					margin-left:  $i / $columns  * 100%;
+				}
+			}
+		}
+	}
+}
+
+/*=====================================================
+	generating grid classes
+=====================================================*/
+.container {
+	// max-width: $breakpoint-xl * 1px;
+	max-width: 1170px;
+	width: 100%;
+    padding-right: $gutter / 2 + 0px;
+    padding-left: $gutter / 2 + 0px;
+    margin-right: auto;
+    margin-left: auto;
+}
+.row {
+	display: flex;
+    flex-wrap: wrap;
+    margin-right: -$gutter / 2 + 0px;
+    margin-left: -$gutter / 2 + 0px;
+}
+%col-common {
+	width: 100%;
+	min-height: 1px;
+	padding-right: $gutter / 2 + 0px;
+	padding-left: $gutter / 2 + 0px;
+}
+@each $modifier , $breakpoint in $map-grid-props {
+	@for $i from 1 through $columns {
+		.col#{$modifier}-#{$i} {
+			@extend %col-common;
+		}
+	}
+}
+.col {
+	@extend %col-common;
+	flex-basis: 0;
+    flex-grow: 1;
+    max-width: 100%;
+	position: relative;
+}
+@each $modifier , $breakpoint in $map-grid-props {
+	@include create-col-classes($modifier, $columns, $breakpoint);
+}
+// `$columns - 1` because offsetting by the width of an entire row isn't possible
+@each $modifier , $breakpoint in $map-grid-props {
+	@include make-col-offset($modifier, $columns, $breakpoint);
+}
+@media (max-width: 1300px) and (min-width: 558px) {
+	.container {
+		width: calc(100vw - 64px);
+	}
+}

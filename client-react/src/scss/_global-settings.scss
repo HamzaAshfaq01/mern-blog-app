@@ -1,0 +1,79 @@
+/*=====================================================
+    Fonts
+=====================================================*/
+:root {
+    --font-family: 'Work Sans', sans-serif;
+}
+/*=====================================================
+    common variables ( as SCSS mixin ) 
+    define common variable for light and dark here
+=====================================================*/
+@mixin common-vars {
+    --c-white: #ffffff;
+    --c-black: #000000;
+    --logo-header-height: 40px;
+    --logo-footer-height: 32px;
+    --c-primary-light: #CCE4FF;
+    --c-primary-main: #0057FF;
+    --c-primary-dark: #012293;
+    --c-success-light: #96EA8C;
+    --c-success-main: #6CD66A;
+    --c-success-dark: #2DA140;
+    --c-error-light: #FF9B84;
+    --c-error-main: #FF7467;
+    --c-error-dark: #DB2635;
+    --c-star: #FFD700;
+    --c-dot-1: #ffe268;
+    --c-dot-2: #ff005c;
+    --c-dot-3: #ffab73;
+    --c-dot-4: #4a47a3;
+    --c-dot-5: #80ABFF;
+    --size-1: 4px;
+    --size-2: 8px;
+    --size-3: 16px;
+    --dot-anim-duration: 400s;
+    --gradient-primary: linear-gradient(to bottom right, var(--c-primary-main), var(--c-primary-dark));
+}
+/*=====================================================
+    light theme colors ( as SCSS mixin )
+=====================================================*/
+@mixin theme-light {
+    --c-body-bg: #ffffff;
+    --c-text-main: #161F38;
+    --c-text-light: #575861;
+    --c-gray-light: #EFEFEF;
+    --c-gray-lighter: #f9f9f9;
+    --c-border: #DADCE5;
+    --c-border-light: var(--c-gray-light);
+    --shadow-opacity: 0.2;
+    --c-shadow: 0 10px 10px rgba(0, 0, 0, var(--shadow-opacity));
+}
+/*=====================================================
+    dark theme colors ( as SCSS mixin )
+=====================================================*/
+@mixin theme-dark {
+    --c-body-bg: #272935;
+    --c-text-main: #f9f9fa;
+    --c-text-light: #b2b2b3;
+    --c-gray-light: #454854;
+    --c-gray-lighter: #303340;
+    --c-border: #35394b;
+    --c-border-light: var(--c-gray-light);
+    --shadow-opacity: 0.2;
+    --c-shadow: 0 10px 10px rgba(0, 0, 0, var(--shadow-opacity));
+}
+/*=====================================================
+    ⚠ WARNING: please do not edit below this line,
+    incorrect coding may break the theme
+
+    Merging common variables with light and dark
+    separately
+=====================================================*/
+:root {
+    @include common-vars;
+    @include theme-light;
+}
+[data-theme="dark"] {
+    @include common-vars;
+    @include theme-dark;
+}
