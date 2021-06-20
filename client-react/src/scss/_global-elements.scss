@@ -109,9 +109,6 @@ svg {
     color: var(--c-white);
     transition: all 250ms;
     outline: 0;
-    display:flex;
-    justify-content:center;
-    align-items:center;
     align-items: center;
     &:hover, &:focus {
         background-color: var(--c-primary-dark);
@@ -150,6 +147,10 @@ svg {
 }
 .btn-block {
     width: 100%;
+}
+.btn-secondary {
+    display:flex;
+    justify-content:center;
 }
 
 input[type='text'], input[type='email'], input[type='url'],input[type='password'], textarea {
