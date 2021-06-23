@@ -51,17 +51,7 @@
 /*=====================================================
     dark theme colors ( as SCSS mixin )
 =====================================================*/
-@mixin theme-dark {
-    --c-body-bg: #272935;
-    --c-text-main: #f9f9fa;
-    --c-text-light: #b2b2b3;
-    --c-gray-light: #454854;
-    --c-gray-lighter: #303340;
-    --c-border: #35394b;
-    --c-border-light: var(--c-gray-light);
-    --shadow-opacity: 0.2;
-    --c-shadow: 0 10px 10px rgba(0, 0, 0, var(--shadow-opacity));
-}
+
 /*=====================================================
     ⚠ WARNING: please do not edit below this line,
     incorrect coding may break the theme
@@ -73,7 +63,4 @@
     @include common-vars;
     @include theme-light;
 }
-[data-theme="dark"] {
-    @include common-vars;
-    @include theme-dark;
-}
+

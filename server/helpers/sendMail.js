@@ -8,7 +8,7 @@ const SendMail = (options,res) => {
 			pass: process.env.MAIL_PASS,
 		},
 	});
-	const mailOptions = {
+	const mailOptions = { 
 		from: process.env.YOUR_MAIL,
 		to: options.to,
 		subjects: options.subject,
@@ -17,7 +17,7 @@ const SendMail = (options,res) => {
 	transporter.sendMail(mailOptions, function (err, info) {
 		if (err) {
 		  return res.status(400).json({
-          errors: errorHandler(err)
+          error:"Something is wrong! Please try"
         });
 		} else {
 			return res.json({

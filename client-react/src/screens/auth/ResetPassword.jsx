@@ -1,10 +1,43 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 import bgPic from "../../assests/login.jpg"
-import {Link} from "react-router-dom"
+import {Link,Redirect} from "react-router-dom"
+import {useDispatch,useSelector} from "react-redux"
+import {resetpassword} from "../../redux/actions/auth.actions"
 
-function ResetPassword() {
+function ResetPassword({match}) {
+    const dispatch = useDispatch()
+    const isReset = useSelector(state => state.auth.isReset)
+
+    console.log(isReset);
+
+     const [formData, setFormData] = useState({
+      password1: '', 
+      password2: '', 
+      token: '',
+  });
+    const { password1, password2, token } = formData;
+
+      const handleChange = text => e => {
+    setFormData({ ...formData, [text]: e.target.value });
+  };
+
+  const handleSubmit=(e)=>{
+      console.log(formData);
+      e.preventDefault()
+      dispatch(resetpassword(formData))
+  }
+
+  useEffect(() => {
+        let token = match.params.token
+        if(token) {
+            setFormData({...formData, token,})
+        }
+        
+    }, []) 
+
     return (
       <div class="members-page-wrap">
+      {isReset && <Redirect to="/signin"/>}
         <div class="members-content-wrap">
           
             <div class="members-wrap">
@@ -12,13 +45,15 @@ function ResetPassword() {
                    Reset Password
                 </h1>
            
-                <form class="members-form text-left js-member-form" data-members-form="login" autocomplete="off">
+                <form class="members-form text-left js-member-form" onSubmit={handleSubmit}>
                     <div class="members-form-box">
                         <div class="form-field-wrap">
                             <label for="password" class="sr-only">New Password</label>
-                            <input  type="password" class="form-field" id="password" placeholder="New password" required="" autocomplete="off"/>
-                               <label for="password" class="sr-only">Confirm Password</label>
-                            <input  type="password" class="form-field" id="password" placeholder="Confirm password" required="" autocomplete="off"/>
+                            <input  type="password" class="form-field" id="password" placeholder="New password" required        onChange={handleChange('password1')}
+                  value={password1}/>
+                            
+                            <input  type="password" class="form-field" id="password" placeholder="Confirm password" required     onChange={handleChange('password2')}
+                  value={password2}/>
 
                            
                             <button class="btn btn-block form-field" type="submit" name="submit"><span>Reset</span></button>

@@ -1,39 +1,28 @@
-const express = require('express')
-const router = express.Router()
+const express = require('express');
+const router = express.Router();
 
 // Load Controllers
 const {
-    registerController,
-    activationController,
-    signinController,
-    forgotPasswordController,
-    resetPasswordController,
-    googleController,
-    facebookController
-} = require('../controllers/auth.controller')
+	registerController,
+	activationController,
+	signinController,
+	forgotPasswordController,
+	resetPasswordController,
+	googleController,
+	facebookController,
+} = require('../controllers/auth.controller');
 
+router.post('/register', registerController);
 
-const {
-    validSign,
-    validLogin,
-    forgotPasswordValidator,
-    resetPasswordValidator
-} = require('../helpers/valid')
+router.post('/login', signinController);
 
-router.post('/register',
-    validSign,
-    registerController)
-
-router.post('/login',
-    validLogin, signinController)
-
-router.post('/activation', activationController)
+router.post('/activation', activationController);
 
 // forgot reset password
-router.put('/forgotpassword', forgotPasswordValidator, forgotPasswordController);
-router.put('/resetpassword', resetPasswordValidator, resetPasswordController);
+router.put('/forgotpassword', forgotPasswordController);
+router.put('/resetpassword', resetPasswordController);
 
 // Google and Facebook Login
-router.post('/googlelogin', googleController)
-router.post('/facebooklogin', facebookController)
-module.exports = router
+router.post('/googlelogin', googleController);
+router.post('/facebooklogin', facebookController);
+module.exports = router;
