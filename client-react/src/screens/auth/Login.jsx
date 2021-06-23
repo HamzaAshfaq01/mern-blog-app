@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
-import { Link ,Redirect} from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { GoogleLogin } from 'react-google-login';
 import { useDispatch, useSelector } from 'react-redux';
 
 import bgPic from '../../assests/login.jpg';
 import GoogleLogo from '../../assests/google.svg';
-import { login } from '../../redux/actions/auth.actions';
+import { login, googlelogin, facebooklogin } from '../../redux/actions/auth.actions';
 
 function Login({ history }) {
 	const dispatch = useDispatch();
 
-	const user = useSelector(state => state.auth.user)
+	const user = useSelector((state) => state.auth.user);
 
 	const [formData, setFormData] = useState({
 		email: '',
@@ -24,23 +24,23 @@ function Login({ history }) {
 	};
 
 	const responseGoogle = (response) => {
+		dispatch(googlelogin(response.tokenId));
 		// sendGoogleToken(response.tokenId);
 	};
 
 	const responseFacebook = (response) => {
+		dispatch(facebooklogin(response.userID, response.accessToken));
 		// sendFacebookToken(response.userID, response.accessToken);
 	};
-
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		dispatch(login(formData));
 	};
 
-
 	return (
 		<div class='members-page-wrap'>
-		{user &&  <Redirect to='/' />}
+			{user && <Redirect to='/' />}
 			<div class='members-content-wrap'>
 				<div class='members-wrap'>
 					<h1 class='members-title h3 text-center'>Sign in</h1>
@@ -61,7 +61,7 @@ function Login({ history }) {
 									<button
 										onClick={renderProps.onClick}
 										disabled={renderProps.disabled}
-										class='btn btn-block form-field btn-secondary'
+										class='btn btn-block form-field btn-mid'
 										style={{ margin: '5px 0 10px 0' }}>
 										<img
 											className='social-logo'
@@ -77,7 +77,7 @@ function Login({ history }) {
 								render={(renderProps) => (
 									<button
 										onClick={renderProps.onClick}
-										class='btn btn-block form-field'
+										class='btn btn-block form-field btn-mid'
 										style={{ margin: '5px 0 20px 0' }}>
 										<div className=' p-2 rounded-full '>
 											<i

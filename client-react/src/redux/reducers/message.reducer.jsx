@@ -1,4 +1,4 @@
-import { GET_MSG, CLEAR_MSG } from '../constants/constants';
+import { GET_MSG, CLEAR_MSG, GET_ERROR } from '../constants/constants';
 
 const initialState = {
 	message: null,
@@ -11,10 +11,15 @@ const msgReducer = (state = initialState, action) => {
 			return {
 				message: action.payload,
 			};
+		case GET_ERROR:
+			return {
+				error: action.payload,
+			};
 
 		case CLEAR_MSG:
 			return {
 				message: null,
+				error: null,
 			};
 		default:
 			return state;

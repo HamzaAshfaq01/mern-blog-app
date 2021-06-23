@@ -1,14 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import {useSelector} from "react-redux"
-import Avatar from "react-avatar"
+import { useSelector } from 'react-redux';
+import Avatar from 'react-avatar';
 import Logo from '../assests/logo.svg';
-import {signout} from "../utils/auth"
+import { useDispatch } from 'react-redux';
+import { logout } from '../redux/actions/auth.actions';
 
 function Header() {
-	const user=useSelector(state=>state.auth.user)
+	const dispatch = useDispatch();
+	const user = useSelector((state) => state.auth.user);
 	return (
-		<header class='site-header' >
+		<header class='site-header'>
 			<div class='container header-inner justify-space-between'>
 				<div class='header-logo flex'>
 					<Link to='/' class='flex align-items logo-img theme-light-logo'>
@@ -45,30 +47,63 @@ function Header() {
 								<Link to='/blog/create'>Create Blog</Link>
 							</li>
 
-							  {!user  && 
-							 <>
-								<li class='nav-item' role='menuitem'>
-								    <Link to='/signin'>Sign in</Link>
-							    </li>
-							    <li class='nav-item' role='menuitem'>
-								    <Link class='btn btn-menuitem' to='/signup'>
-									    Sign Up
-								    </Link>
-						    	</li>
+							{!user && (
+								<>
+									<li class='nav-item' role='menuitem'>
+										<Link to='/signin'>Sign in</Link>
+									</li>
+									<li class='nav-item' role='menuitem'>
+										<Link class='btn btn-menuitem' to='/signup'>
+											Sign Up
+										</Link>
+									</li>
 								</>
-							}
-							
-							{user &&
-							<div class="dropdown">
-                                <button class="btn-transparent dropdown-toggle" type="button" id="dropdownMenuButton"                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style={                              {display:"flex",justifyContent:"center",alignItems:"center"}}>
-                                  <Avatar color={Avatar.getRandomColor('sitebase', ['red', 'green', 'blue'])} size="45" round={true} name={user.name}/>
-                                </button>
-  
-                              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <Link class="dropdown-item" to="/user/profile">Profile</Link>
-                                <Link class="dropdown-item" to="/" onClick={()=>signout()}>Logout</Link>
-                              </div>
-                            </div>}
+							)}
+
+							{user && (
+								<div class='dropdown'>
+									<button
+										class='btn-transparent dropdown-toggle'
+										type='button'
+										id='dropdownMenuButton'
+										data-toggle='dropdown'
+										aria-haspopup='true'
+										aria-expanded='false'
+										style={{
+											display: 'flex',
+											justifyContent: 'center',
+											alignItems: 'center',
+										}}>
+										<Avatar
+											color={Avatar.getRandomColor(
+												'sitebase',
+												['red', 'green', 'blue']
+											)}
+											size='45'
+											round={true}
+											name={user.name}
+										/>
+									</button>
+
+									<div
+										class='dropdown-menu'
+										aria-labelledby='dropdownMenuButton'>
+										<Link
+											class='dropdown-item'
+											to='/user/profile'>
+											Profile
+										</Link>
+										<Link
+											class='dropdown-item'
+											to='/'
+											onClick={() => {
+												dispatch(logout());
+											}}>
+											Logout
+										</Link>
+									</div>
+								</div>
+							)}
 						</ul>
 					</nav>
 				</div>

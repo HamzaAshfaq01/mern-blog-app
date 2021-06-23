@@ -139,7 +139,7 @@ svg {
 	&:focus {
 		background-color: var(--c-primary-dark);
 		text-decoration: none;
-		color:white
+		color: white;
 	}
 	svg {
 		width: 24px;
@@ -179,19 +179,21 @@ svg {
 .btn-block {
 	width: 100%;
 }
-.btn-secondary {
+.btn-mid {
 	display: flex;
 	justify-content: center;
+	opacity: 1 !important;
+	pointer-events: all !important;
 }
-.btn-transparent{
-	background:transparent !important;
-	border:none !important;
-	outline:none !important
+.btn-transparent {
+	background: transparent !important;
+	border: none !important;
+	outline: none !important;
 }
-.dropdown-item:hover, .dropdown-item:focus
-{
-	background-color:   var(--c-primary-main);
-		color:var(--c-white);
+.dropdown-item:hover,
+.dropdown-item:focus {
+	background-color: var(--c-primary-main);
+	color: var(--c-white);
 }
 input[type='file'] {
 	padding: 1rem 0;
@@ -204,7 +206,7 @@ input[type='url'],
 input[type='password'],
 textarea {
 	resize: none;
-	background: #F7FAFC;
+	background: #f7fafc;
 	border: 1px solid var(--c-border);
 	box-shadow: none;
 	height: 48px;
@@ -214,7 +216,7 @@ textarea {
 	color: var(--c-primary-main);
 	border-radius: var(--size-1);
 	&:focus {
-		background:var(--c-body-bg);
+		background: var(--c-body-bg);
 		border: 1px solid var(--c-primary-main);
 		color: var(--c-text-main);
 		outline: none;

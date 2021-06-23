@@ -1,4 +1,4 @@
-import {authenticate,isAuth,signout,setLocalStorage} from "../../utils/auth"
+import { authenticate, isAuth, signout, setLocalStorage } from '../../utils/auth';
 import {
 	REGISTER_SUCCESS,
 	REGISTER_FAIL,
@@ -8,7 +8,7 @@ import {
 	RESET_SUCCESS,
 	RESET_FAIL,
 	PROFILE_UPDATE_SUCCESS,
-	PROFILE_UPDATE_FAIL
+	PROFILE_UPDATE_FAIL,
 } from '../constants/constants';
 
 const initialState = {
@@ -19,38 +19,36 @@ const initialState = {
 	user: null,
 };
 
-const user=isAuth()
+const user = isAuth();
 
-if(user)
-{
-	initialState.user=user
-	initialState.isAuthenticated=true
+if (user) {
+	initialState.user = user;
+	initialState.isAuthenticated = true;
 }
-
 
 const AuthReducer = (state = initialState, action) => {
 	const { type, payload } = action;
 
 	switch (type) {
 		case REGISTER_SUCCESS:
-		return{
-			...state,
-			access:payload
-		}
+			return {
+				...state,
+				access: payload,
+			};
 		case LOGIN_SUCCESS:
-	    authenticate(payload)
+			authenticate(payload);
 			return {
 				...state,
 				isAuthenticated: true,
 				access: payload.token,
-				user:payload.user,
+				user: payload.user,
 			};
 		case PROFILE_UPDATE_SUCCESS:
-		 setLocalStorage("user",payload)
-		return{
-			...state,
-			user:payload
-		}
+			setLocalStorage('user', payload);
+			return {
+				...state,
+				user: payload,
+			};
 		case RESET_SUCCESS:
 			return {
 				...state,
@@ -60,7 +58,7 @@ const AuthReducer = (state = initialState, action) => {
 		case LOGIN_FAIL:
 		case REGISTER_FAIL:
 		case LOGOUT_SUCCESS:
-			signout()
+			signout();
 			return {
 				...state,
 				isAuthenticated: false,
