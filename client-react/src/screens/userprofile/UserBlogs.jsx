@@ -25,7 +25,7 @@ function UserBlogs() {
 						<span>My Blogs.</span>
 					</h2>
 					{loader && <Loader />}
-					{userBlogs &&
+					{userBlogs.length > 0 ? (
 						userBlogs.map((blog) => (
 							<article class='post-card flex'>
 								<Link
@@ -86,7 +86,10 @@ function UserBlogs() {
 									</div>
 								</div>
 							</article>
-						))}
+						))
+					) : (
+						<h1>No Posts</h1>
+					)}
 				</div>
 			</div>
 		</div>

@@ -24,8 +24,11 @@ function Home() {
 								<span>Blogs.</span>
 							</h2>
 							{loader && <Loader />}
-							{allBlogs &&
-								allBlogs.map((blog) => <Blogs blog={blog} />)}
+							{allBlogs.length > 0 ? (
+								allBlogs.map((blog) => <Blogs blog={blog} />)
+							) : (
+								<h1>No Post</h1>
+							)}
 						</div>
 					</div>
 				</div>
