@@ -1,12 +1,9 @@
 const User = require('../models/auth.model');
-const expressJwt = require('express-jwt');
 const _ = require('lodash');
 const { OAuth2Client } = require('google-auth-library');
 const fetch = require('node-fetch');
 const { validationResult } = require('express-validator');
 const jwt = require('jsonwebtoken');
-const expressJWT = require('express-jwt');
-const { errorHandler } = require('../helpers/dbErrorHandling');
 const SendMail = require('../helpers/sendMail');
 
 exports.registerController = async (req, res) => {
@@ -137,10 +134,6 @@ exports.signinController = async (req, res) => {
 	}
 };
 
-exports.requireSignin = expressJwt({
-	secret: process.env.JWT_SECRET, // req.user._id
-});
-
 exports.adminMiddleware = (req, res, next) => {
 	User.findById({
 		_id: req.user._id,
@@ -266,6 +259,7 @@ exports.googleController = async (req, res) => {
 		});
 		const { _id, email, name, role } = user;
 		return res.json({
+			message: 'Login Succesfull',
 			token,
 			user: { _id, email, name, role },
 		});
@@ -287,6 +281,7 @@ exports.googleController = async (req, res) => {
 		});
 		const { _id, email, name, role } = data;
 		return res.json({
+			message: 'Login Succesfull',
 			token,
 			user: { _id, email, name, role },
 		});
@@ -315,6 +310,7 @@ exports.facebookController = (req, res) => {
 					);
 					const { _id, email, name, role } = user;
 					return res.json({
+						message: 'Login Succesfull',
 						token,
 						user: { _id, email, name, role },
 					});
@@ -335,6 +331,7 @@ exports.facebookController = (req, res) => {
 						);
 						const { _id, email, name, role } = data;
 						return res.json({
+							message: 'Login Succesfull',
 							token,
 							user: { _id, email, name, role },
 						});

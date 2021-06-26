@@ -1,8 +1,6 @@
 const User = require('../models/auth.model');
-const expressJwt = require('express-jwt');
 
 exports.readController = (req, res) => {
-
 	const userId = req.params.id;
 	User.findById(userId).exec((err, user) => {
 		if (err || !user) {
@@ -16,45 +14,48 @@ exports.readController = (req, res) => {
 	});
 };
 
-exports.updateController =async (req, res) => {
+exports.updateController = async (req, res) => {
 	const { name, password } = req.body;
 
-	const user=await User.findById(req.user._id)
+	const user = await User.findById(req.user._id);
 
-
-	if(!user) return res.status(400).json({
-				error: 'User not found',
-			});
+	if (!user)
+		return res.status(400).json({
+			error: 'User not found',
+		});
 	if (!name) {
-			return res.status(400).json({
-				error: 'Name is required',
-			});
+		return res.status(400).json({
+			error: 'Name is required',
+		});
 	} else {
-			user.name = name;
+		user.name = name;
 	}
 	if (password) {
 		if (password.length < 6) {
-				return res.status(400).json({
-					error: 'Password should be min 6 characters long',
-				});
+			return res.status(400).json({
+				error: 'Password should be min 6 characters long',
+			});
 		} else {
-				user.password = password;
+			user.password = password;
 		}
 	}
 
-    user.save((err, updatedUser) => {
+	user.save((err, updatedUser) => {
 		console.log(updatedUser);
-			if (err) {
-				return res.status(400).json({
-					error: 'User update failed',
-				});
-			}
-			const {email,name,role,_id}=updatedUser
-			res.json({
-				message:"Updated Succesfully",
-				user:{
-					email,name,role,_id
-				}
+		if (err) {
+			return res.status(400).json({
+				error: 'User update failed',
 			});
+		}
+		const { email, name, role, _id } = updatedUser;
+		res.json({
+			message: 'Updated Succesfully',
+			user: {
+				email,
+				name,
+				role,
+				_id,
+			},
 		});
+	});
 };

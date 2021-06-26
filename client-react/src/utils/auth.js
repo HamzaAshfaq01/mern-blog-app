@@ -1,5 +1,5 @@
 import cookie from 'js-cookie';
-import { GoogleLogout } from 'react-google-login';
+import jwt from 'jsonwebtoken';
 
 // Set in Cookie
 export const setCookie = (key, value) => {
@@ -50,10 +50,19 @@ export const authenticate = (response) => {
 
 // Access user info from localstorage
 export const isAuth = () => {
+	console.log(getCookie('token'));
 	if (window !== 'undefined') {
 		const cookieChecked = getCookie('token');
+
 		if (cookieChecked) {
-			if (localStorage.getItem('user')) {
+			// varify token
+			const decodeToken = jwt.decode(cookieChecked);
+			const expiresIn = new Date(decodeToken.exp * 1000);
+			if (new Date() > expiresIn) {
+				removeCookie('token');
+				removeLocalStorage('user');
+				return false;
+			} else if (localStorage.getItem('user')) {
 				return JSON.parse(localStorage.getItem('user'));
 			} else {
 				return false;

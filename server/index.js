@@ -3,9 +3,9 @@ const express = require('express');
 const morgan = require('morgan');
 const connectDB = require('./config/db');
 const cors = require('cors');
+const path = require('path');
 
 const app = express();
-
 app.use(express.json());
 connectDB();
 app.use(
@@ -22,13 +22,17 @@ app.use(function (req, res, next) {
 	next();
 });
 
+app.use(express.static(path.join(__dirname, './uploads')));
 // Load routes
-const authRouter = require('./routes/auth.route');
 const userRouter = require('./routes/user.route');
+const authRouter = require('./routes/auth.route');
+const blogRouter = require('./routes/blog.route');
 
 // Use Routes
 app.use('/api', authRouter);
 app.use('/api', userRouter);
+app.use('/api', blogRouter);
+
 app.get('/', (req, res) => {
 	console.log('Api');
 	res.status(404).json({

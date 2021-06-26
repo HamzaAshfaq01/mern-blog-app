@@ -9,6 +9,7 @@ import {
 	RESET_FAIL,
 	PROFILE_UPDATE_SUCCESS,
 	PROFILE_UPDATE_FAIL,
+	TOKEN_EXPIRE,
 } from '../constants/constants';
 
 const initialState = {
@@ -20,7 +21,6 @@ const initialState = {
 };
 
 const user = isAuth();
-
 if (user) {
 	initialState.user = user;
 	initialState.isAuthenticated = true;
@@ -58,6 +58,14 @@ const AuthReducer = (state = initialState, action) => {
 		case LOGIN_FAIL:
 		case REGISTER_FAIL:
 		case LOGOUT_SUCCESS:
+			signout();
+			return {
+				...state,
+				isAuthenticated: false,
+				user: null,
+				access: null,
+			};
+		case TOKEN_EXPIRE:
 			signout();
 			return {
 				...state,

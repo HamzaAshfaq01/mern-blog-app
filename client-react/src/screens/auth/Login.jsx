@@ -7,11 +7,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import bgPic from '../../assests/login.jpg';
 import GoogleLogo from '../../assests/google.svg';
 import { login, googlelogin, facebooklogin } from '../../redux/actions/auth.actions';
+import Loader from '../../components/Loader';
 
 function Login({ history }) {
 	const dispatch = useDispatch();
 
 	const user = useSelector((state) => state.auth.user);
+	const loader = useSelector((state) => state.loading.loader);
 
 	const [formData, setFormData] = useState({
 		email: '',
@@ -40,7 +42,6 @@ function Login({ history }) {
 
 	return (
 		<div class='members-page-wrap'>
-			{user && <Redirect to='/' />}
 			<div class='members-content-wrap'>
 				<div class='members-wrap'>
 					<h1 class='members-title h3 text-center'>Sign in</h1>
@@ -125,11 +126,14 @@ function Login({ history }) {
 										</Link>
 									</small>
 								</div>
+
 								<button
-									class='btn btn-block form-field'
+									class={`btn btn-block form-field ${
+										loader && 'disabled'
+									}`}
 									type='submit'
 									name='submit'>
-									<span>Login</span>
+									<span>{loader ? <Loader /> : 'Login'}</span>
 								</button>
 							</div>
 						</div>

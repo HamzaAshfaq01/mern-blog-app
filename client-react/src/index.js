@@ -7,6 +7,7 @@ import App from './App.jsx';
 import store from './redux/store';
 import './scss/index.scss';
 import 'react-toastify/dist/ReactToastify.css';
+import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 
 ReactDOM.render(
 	<BrowserRouter>

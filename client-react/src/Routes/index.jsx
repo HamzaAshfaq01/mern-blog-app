@@ -1,6 +1,7 @@
 import React from 'react';
-import { Route, Redirect, Switch } from 'react-router-dom';
-
+import { Route, Redirect, Switch, withRouter } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import jwt from 'jsonwebtoken';
 import Home from '../screens/home/Home';
 import Login from '../screens/auth/Login';
 import Signup from '../screens/auth/Signup';
@@ -9,10 +10,30 @@ import Activate from '../screens/auth/Activate.jsx';
 import BlogDetail from '../components/BlogDetail';
 import ForgotPassword from '../screens/auth/ForgotPassword.jsx';
 import ResetPassword from '../screens/auth/ResetPassword.jsx';
-import UserProfile from "../screens/userprofile/Profile.jsx"
+import UserProfile from '../screens/userprofile/Profile.jsx';
 import PrivateRoute from './private/PrivateRoute';
+import UserBlogs from '../screens/userprofile/UserBlogs';
+import { getCookie } from '../utils/auth';
+import { expireToken } from '../redux/actions/auth.actions';
 
-function Routes() {
+function Routes({ history }) {
+	const dispatch = useDispatch();
+	history.listen(() => {
+		if (window !== 'undefined') {
+			const cookieChecked = getCookie('token');
+			if (cookieChecked) {
+				// varify token
+				const decodeToken = jwt.decode(cookieChecked);
+				const expiresIn = new Date(decodeToken.exp * 1000);
+				if (new Date() > expiresIn) {
+					dispatch(expireToken());
+					return false;
+				}
+			} else {
+				dispatch(expireToken());
+			}
+		}
+	});
 	return (
 		<Switch>
 			<Route path='/' exact render={(props) => <Home {...props} />} />
@@ -28,13 +49,14 @@ function Routes() {
 				exact
 				render={(props) => <ResetPassword {...props} />}
 			/>
+			<PrivateRoute path='/blog/create' exact component={CreateBlog} />
 			<Route
-				path='/blog/create'
+				path='/user/blogs'
 				exact
-				render={(props) => <CreateBlog {...props} />}
+				render={(props) => <UserBlogs {...props} />}
 			/>
 			<Route
-				path='/blog/detail'
+				path='/blog/detail/:id'
 				exact
 				render={(props) => <BlogDetail {...props} />}
 			/>
@@ -49,4 +71,4 @@ function Routes() {
 	);
 }
 
-export default Routes;
+export default withRouter(Routes);

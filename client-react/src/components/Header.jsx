@@ -61,48 +61,53 @@ function Header() {
 							)}
 
 							{user && (
-								<div class='dropdown'>
-									<button
-										class='btn-transparent dropdown-toggle'
-										type='button'
-										id='dropdownMenuButton'
-										data-toggle='dropdown'
-										aria-haspopup='true'
-										aria-expanded='false'
-										style={{
-											display: 'flex',
-											justifyContent: 'center',
-											alignItems: 'center',
-										}}>
-										<Avatar
-											color={Avatar.getRandomColor(
-												'sitebase',
-												['red', 'green', 'blue']
-											)}
-											size='45'
-											round={true}
-											name={user.name}
-										/>
-									</button>
-
-									<div
-										class='dropdown-menu'
-										aria-labelledby='dropdownMenuButton'>
-										<Link
-											class='dropdown-item'
-											to='/user/profile'>
-											Profile
-										</Link>
-										<Link
-											class='dropdown-item'
-											to='/'
-											onClick={() => {
-												dispatch(logout());
+								<>
+									<li class='nav-item' role='menuitem'>
+										<Link to='/user/blogs'>My Blogs</Link>
+									</li>
+									<div class='dropdown'>
+										<button
+											class='btn-transparent dropdown-toggle'
+											type='button'
+											id='dropdownMenuButton'
+											data-toggle='dropdown'
+											aria-haspopup='true'
+											aria-expanded='false'
+											style={{
+												display: 'flex',
+												justifyContent: 'center',
+												alignItems: 'center',
 											}}>
-											Logout
-										</Link>
+											<Avatar
+												color={Avatar.getRandomColor(
+													'sitebase',
+													['red', 'green', 'blue']
+												)}
+												size='45'
+												round={true}
+												name={user.name}
+											/>
+										</button>
+
+										<div
+											class='dropdown-menu'
+											aria-labelledby='dropdownMenuButton'>
+											<Link
+												class='dropdown-item'
+												to='/user/profile'>
+												Profile
+											</Link>
+											<Link
+												class='dropdown-item'
+												to='/'
+												onClick={() => {
+													dispatch(logout());
+												}}>
+												Logout
+											</Link>
+										</div>
 									</div>
-								</div>
+								</>
 							)}
 						</ul>
 					</nav>

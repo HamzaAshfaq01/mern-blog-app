@@ -109,9 +109,12 @@ img {
 }
 
 svg {
-	fill: currentColor;
-	width: 24px;
-	height: 24px;
+	fill: #0057ff;
+	// width: 24px;
+	// height: 24px;
+	position: relative;
+	left: 50%;
+	transform: translateX(-50%);
 }
 .btn {
 	&:not(:disabled):not(.diabled) {
@@ -142,9 +145,12 @@ svg {
 		color: white;
 	}
 	svg {
-		width: 24px;
-		height: 24px;
-		margin-right: 8px;
+		width: 35px;
+		height: 35px;
+		fill: white;
+		position: relative;
+		left: 0%;
+		transform: translateX(0%);
 	}
 }
 .btn-alternate {
@@ -367,24 +373,7 @@ code {
 	border: 1px solid var(--c-border);
 	border-radius: var(--size-1);
 }
-.label {
-	display: inline-flex;
-	white-space: nowrap;
-	font-size: 0.875rem;
-	font-weight: 600;
-	height: 28px;
-	line-height: 28px;
-	padding: 0 16px;
-	border-radius: 14px;
-}
-.label-success {
-	background: var(--c-success-light);
-	color: var(--c-black);
-}
-.label-success-solid {
-	background: var(--c-success-dark);
-	color: var(--c-white);
-}
+
 .site-wrap {
 	display: flex;
 	flex-direction: column;
@@ -394,69 +383,4 @@ code {
 .main {
 	flex-grow: 1;
 	margin-bottom: 5em;
-}
-@keyframes loading {
-	to {
-		transform: rotate(360deg);
-	}
-}
-%loading_spinner {
-	position: relative;
-	pointer-events: none;
-	&:after {
-		content: '';
-		box-sizing: border-box;
-		position: absolute;
-		top: 50%;
-		left: calc(50% - 10px);
-		width: 20px;
-		height: 20px;
-		margin-top: -10px;
-		border-radius: 50%;
-		border: 3px solid var(--c-white);
-		border-top-color: transparent;
-		animation: loading 0.8s linear infinite;
-	}
-}
-.loading {
-	.btn,
-	&.btn,
-	button,
-	&.button,
-	input[type='submit'],
-	&input[type='submit'] {
-		@extend %loading_spinner;
-		span {
-			visibility: hidden;
-		}
-	}
-}
-%success_icon {
-	position: relative;
-	&::before {
-		content: '';
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		display: inline-block;
-		height: 10px;
-		width: 20px;
-		border: 3px solid var(--c-white);
-		border-top-width: 0;
-		border-right-width: 0;
-		transform: translate(-50%, -75%) rotate(-45deg);
-	}
-}
-.success {
-	.btn,
-	&.btn,
-	button,
-	&.button,
-	input[type='submit'],
-	&input[type='submit'] {
-		@extend %success_icon;
-		span {
-			visibility: hidden;
-		}
-	}
 }
