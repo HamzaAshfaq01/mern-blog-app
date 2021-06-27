@@ -15,7 +15,7 @@ import {
 	GET_MSG,
 	GET_ERROR,
 	CLEAR_MSG,
-	TOKEN_EXPIRE
+	TOKEN_EXPIRE,
 } from '../constants/constants';
 
 // REGIGSTER ACTION
@@ -95,7 +95,6 @@ export const googlelogin = (tokenId) => async (dispatch) => {
 			type: LOGIN_SUCCESS,
 			payload: data,
 		});
-		document.location.href = '/';
 		dispatch(clearLoading(false));
 		dispatch({ type: GET_MSG, payload: data.message });
 	} catch (err) {
@@ -131,7 +130,6 @@ export const facebooklogin = (userID, accessToken) => async (dispatch) => {
 			type: LOGIN_SUCCESS,
 			payload: data,
 		});
-		document.location.href = '/';
 		dispatch(clearLoading(false));
 		dispatch({ type: GET_MSG, payload: data.message });
 	} catch (err) {
@@ -162,7 +160,6 @@ export const login = (body) => async (dispatch) => {
 			type: LOGIN_SUCCESS,
 			payload: data,
 		});
-		document.location.href = '/';
 		dispatch(clearLoading(false));
 		dispatch({ type: GET_MSG, payload: data.message });
 	} catch (err) {
@@ -188,7 +185,6 @@ export const login = (body) => async (dispatch) => {
 
 // FORGOT PASSWORD ACTION
 export const forgotpassword = (email) => async (dispatch) => {
-	console.log(email);
 	try {
 		dispatch(setLoading());
 
@@ -219,8 +215,6 @@ export const resetpassword = (body) => async (dispatch) => {
 		dispatch(setLoading());
 
 		const { data } = await axios.put(`/resetpassword`, body);
-
-		console.log(data, 'resetPassword');
 
 		dispatch({
 			type: RESET_SUCCESS,

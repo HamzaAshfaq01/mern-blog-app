@@ -8,15 +8,18 @@ const path = require('path');
 const app = express();
 app.use(express.json());
 connectDB();
-app.use(
-	cors({
-		origin: process.env.CLIENT_URL,
-		credentials: true, //access-control-allow-credentials:true
-	})
-);
+app.use(cors());
+// app.use(
+// 	cors({
+// 		origin: process.env.CLIENT_URL,
+// 		credentials: true, //access-control-allow-credentials:true
+// 	})
+// );
+
 app.use(morgan('dev'));
 
 app.use(function (req, res, next) {
+	console.log(req.protocol + '://' + req.get('host'));
 	res.header('Access-Control-Allow-Origin', '*');
 	res.header('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT');
 	next();
@@ -51,6 +54,7 @@ app.use((req, res) => {
 if (process.env.NODE_ENV === 'PRODUCTION') {
 	// Set static folder
 	app.use(express.static('client-react/build'));
+	app.use(express.static(path.join(__dirname, './uploads')));
 
 	app.get('*', (req, res) => {
 		res.sendFile(path.resolve(__dirname, 'client-react', 'build', 'index.html'));

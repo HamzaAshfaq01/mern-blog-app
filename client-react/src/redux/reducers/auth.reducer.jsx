@@ -41,7 +41,7 @@ const AuthReducer = (state = initialState, action) => {
 				...state,
 				isAuthenticated: true,
 				access: payload.token,
-				user: payload.user,
+				user: payload.user, 
 			};
 		case PROFILE_UPDATE_SUCCESS:
 			setLocalStorage('user', payload);
@@ -70,7 +70,7 @@ const AuthReducer = (state = initialState, action) => {
 			return {
 				...state,
 				isAuthenticated: false,
-				user: null,
+				user: null, 
 				access: null,
 			};
 		case RESET_FAIL:

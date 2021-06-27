@@ -28,7 +28,6 @@ export const createBlog = (body) => async (dispatch) => {
 				Authorization: `Bearer ${token}`,
 			},
 		});
-		document.location.href = '/';
 		dispatch(clearLoading(false));
 	} catch (err) {
 		if (err.response) {
@@ -54,7 +53,6 @@ export const getAllBlogs = () => async (dispatch) => {
 		dispatch(setLoading(true));
 
 		const { data } = await axios.get('/allblogs');
-		console.log(data);
 		dispatch(clearLoading(false));
 		dispatch({
 			type: GET_ALL_BLOG_SUCCESS,

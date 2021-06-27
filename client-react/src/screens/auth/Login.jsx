@@ -42,6 +42,7 @@ function Login({ history }) {
 
 	return (
 		<div class='members-page-wrap'>
+			{user && history.push('/')}
 			<div class='members-content-wrap'>
 				<div class='members-wrap'>
 					<h1 class='members-title h3 text-center'>Sign in</h1>

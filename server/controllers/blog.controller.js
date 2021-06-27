@@ -6,7 +6,7 @@ exports.createBlogController = async (req, res) => {
 		return res.status(400).json({
 			error: 'Please fill all fields',
 		});
-	const img_url = `http://localhost:${process.env.PORT}/` + req.file.filename;
+	const img_url = req.protocol + '://' + req.get('host') + '/' + req.file.filename;
 
 	try {
 		const blog = await Blog.create({
