@@ -29,6 +29,7 @@ export const createBlog = (body) => async (dispatch) => {
 			},
 		});
 		dispatch(clearLoading(false));
+		dispatch({ type: GET_MSG, payload: data.message });
 	} catch (err) {
 		if (err.response) {
 			const {
