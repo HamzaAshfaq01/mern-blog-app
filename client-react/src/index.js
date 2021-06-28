@@ -8,6 +8,7 @@ import store from './redux/store';
 import './scss/index.scss';
 import 'react-toastify/dist/ReactToastify.css';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
+import 'react-quill/dist/quill.snow.css';
 
 ReactDOM.render(
 	<BrowserRouter>

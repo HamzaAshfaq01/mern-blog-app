@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import bgPic from '../../assests/signup.jpg';
 import { Link } from 'react-router-dom';
+import ReactQuill from 'react-quill';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { createBlog } from '../../redux/actions/blog.actions.jsx';
@@ -19,10 +20,14 @@ function CreateBlog() {
 		const { name, value } = e.target;
 		setUserData({ ...userData, [name]: value });
 	};
+	const handleBody = (text) => {
+		setUserData({ ...userData, description: text });
+	};
 	const handleFile = (e) => {
 		setUserData({ ...userData, image: e.target.files[0] });
 	};
 	const handleSubmit = (e) => {
+		console.log(userData);
 		e.preventDefault();
 		const formData = new FormData();
 		formData.append('title', userData.title);
@@ -53,13 +58,15 @@ function CreateBlog() {
 									name='title'
 									onChange={handleChange}
 								/>
-								<textarea
-									rows='4'
-									placeholder='Blog Body'
-									class=' form-field'
-									value={userData.description}
+
+								<ReactQuill
+									theme='snow'
+									id='body'
+									placeholder='Blog Description'
 									name='description'
-									onChange={handleChange}></textarea>
+									value={userData.description}
+									onChange={handleBody}
+								/>
 
 								<input
 									type='file'

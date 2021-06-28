@@ -4,6 +4,7 @@ import Author from '../assests/hamza.jpg';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 import Avatar from 'react-avatar';
+import htmlToText from 'html-react-parser';
 
 function HomeBlogs({ blog }) {
 	const { title, description, creator, image, createdAt, _id } = blog;
@@ -28,7 +29,7 @@ function HomeBlogs({ blog }) {
 									'green',
 									'blue',
 								])}
-								size='45' 
+								size='45'
 								round={true}
 								name={creator}
 							/>
@@ -43,7 +44,7 @@ function HomeBlogs({ blog }) {
 					<h2 class='h3 post-title'>
 						<Link to={`/blog/detail/${_id}`}>{title}</Link>
 					</h2>
-					<div class='post-excerpt'>{description}</div>
+					<div class='post-excerpt'>{htmlToText(description)}</div>
 					<div class='post-meta flex' style={{ alignItems: 'center' }}>
 						<time class='post-date' datetime='2021-05-02'>
 							{moment(createdAt).format('ll')}
@@ -52,7 +53,7 @@ function HomeBlogs({ blog }) {
 						<span class='visibility'>Public</span>
 					</div>
 				</div>
-			</article>
+			</article> 
 		</>
 	);
 }

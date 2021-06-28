@@ -10,6 +10,8 @@ function Home() {
 	const allBlogs = useSelector((state) => state.blog.allBlogs);
 	const loader = useSelector((state) => state.loading.loader);
 
+	
+
 	React.useEffect(() => {
 		dispatch(getAllBlogs());
 	}, []);
@@ -27,7 +29,7 @@ function Home() {
 							{allBlogs.length > 0 &&
 								allBlogs.map((blog) => <Blogs blog={blog} />)}
 							{!loader && allBlogs.length == 0 && <h1>No Post</h1>}
-						</div> 
+						</div>
 					</div>
 				</div>
 			</div>

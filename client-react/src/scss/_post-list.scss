@@ -61,11 +61,23 @@
 	}
 	.post-excerpt {
 		margin-bottom: 20px;
+		font-size: 19px;
+		line-height: 28.5px;
 		height: auto;
 		overflow: hidden;
 		display: -webkit-box;
 		-webkit-line-clamp: 2;
 		-webkit-box-orient: vertical;
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		p {
+			font-size: 19px;
+			font-weight: normal;
+			line-height: 28.5px;
+		}
 	}
 	.post-meta {
 		font-size: 0.875rem;

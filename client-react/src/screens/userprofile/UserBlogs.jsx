@@ -6,6 +6,7 @@ import { getUserBlog } from '../../redux/actions/blog.actions';
 import Avatar from 'react-avatar';
 import { Link } from 'react-router-dom';
 import Loader from '../../components/Loader';
+import htmlToText from 'html-react-parser';
 
 function UserBlogs() {
 	const dispatch = useDispatch();
@@ -71,7 +72,7 @@ function UserBlogs() {
 										</Link>
 									</h2>
 									<div class='post-excerpt'>
-										{blog.description}
+										{htmlToText(blog.description)}
 									</div>
 									<div
 										class='post-meta flex'
