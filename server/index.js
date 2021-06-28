@@ -8,18 +8,16 @@ const path = require('path');
 const app = express();
 app.use(express.json());
 connectDB();
-app.use(cors());
-// app.use(
-// 	cors({
-// 		origin: process.env.CLIENT_URL,
-// 		credentials: true, //access-control-allow-credentials:true
-// 	})
-// );
+app.use(
+	cors({
+		origin: process.env.CLIENT_URL,
+		credentials: true, //access-control-allow-credentials:true
+	})
+);
 
 app.use(morgan('dev'));
 
 app.use(function (req, res, next) {
-	console.log(req.protocol + '://' + req.get('host'));
 	res.header('Access-Control-Allow-Origin', '*');
 	res.header('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT');
 	next();
