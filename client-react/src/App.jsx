@@ -13,6 +13,7 @@ function App({ history }) {
 	const { error, message } = state;
 
 	React.useEffect(() => {
+		
 		error &&
 			toast.error(error, {
 				position: 'top-right',
